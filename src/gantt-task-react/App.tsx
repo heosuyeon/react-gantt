@@ -18,6 +18,10 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>(initTasks());
   const [isChecked, setIsChecked] = useState<boolean>(true);
   const lastDragTimeRef = useRef<number>(0);
+  // 초기 뷰 날짜는 한 번만 계산하여 고정
+  const initialViewDateRef = useRef<Date>(
+    new Date(new Date().setDate(new Date().getDate() - 4))
+  );
   let columnWidth = 65;
   if (view === ViewMode.Year) {
     columnWidth = 350;
@@ -43,6 +47,8 @@ function App() {
     top: number;
     task: Task;
   } | null>(null);
+
+  console.log("render");
 
   // 마우스 위치 추적
   useEffect(() => {
@@ -224,7 +230,8 @@ function App() {
           <Gantt
             tasks={tasks}
             viewMode={view}
-            // viewDate={new Date()}
+            // 4일 전
+            viewDate={initialViewDateRef.current}
             onDateChange={handleTaskChange}
             onDelete={handleTaskDelete}
             onProgressChange={handleProgressChange}
