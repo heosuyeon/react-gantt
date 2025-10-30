@@ -2,9 +2,9 @@ name: Build and Upload Artifact
 
 on:
   push:
-    branches: [main]
+    branches: [gh-pages]
   pull_request:
-    branches: [main]
+    branches: [gh-pages]
 
 # GitHub Pages 배포를 위한 권한 설정
 permissions:
@@ -48,3 +48,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          branch: gh-pages
