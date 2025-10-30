@@ -1,0 +1,383 @@
+diff --git a/node_modules/gantt-task-react/dist/index.modern.js b/node_modules/gantt-task-react/dist/index.modern.js
+index b372269..14ed8b9 100644
+--- a/node_modules/gantt-task-react/dist/index.modern.js
++++ b/node_modules/gantt-task-react/dist/index.modern.js
+@@ -258,7 +258,8 @@ var TaskListHeaderDefault = function TaskListHeaderDefault(_ref) {
+   var headerHeight = _ref.headerHeight,
+       fontFamily = _ref.fontFamily,
+       fontSize = _ref.fontSize,
+-      rowWidth = _ref.rowWidth;
++      // rowWidth = _ref.rowWidth;
++      rowWidth = 320;
+   return React.createElement("div", {
+     className: styles.ganttTable,
+     style: {
+@@ -275,29 +276,32 @@ var TaskListHeaderDefault = function TaskListHeaderDefault(_ref) {
+     style: {
+       minWidth: rowWidth
+     }
+-  }, "\xA0Name"), React.createElement("div", {
+-    className: styles.ganttTable_HeaderSeparator,
+-    style: {
+-      height: headerHeight * 0.5,
+-      marginTop: headerHeight * 0.2
+-    }
+-  }), React.createElement("div", {
+-    className: styles.ganttTable_HeaderItem,
+-    style: {
+-      minWidth: rowWidth
+-    }
+-  }, "\xA0From"), React.createElement("div", {
+-    className: styles.ganttTable_HeaderSeparator,
+-    style: {
+-      height: headerHeight * 0.5,
+-      marginTop: headerHeight * 0.25
+-    }
+-  }), React.createElement("div", {
+-    className: styles.ganttTable_HeaderItem,
+-    style: {
+-      minWidth: rowWidth
+-    }
+-  }, "\xA0To")));
++  }, "\xA0호실명"), 
++  // React.createElement("div", {
++  //   className: styles.ganttTable_HeaderSeparator,
++  //   style: {
++  //     height: headerHeight * 0.5,
++  //     marginTop: headerHeight * 0.2
++  //   }
++  // }), 
++  // React.createElement("div", {
++  //   className: styles.ganttTable_HeaderItem,
++  //   style: {
++  //     minWidth: rowWidth
++  //   }
++  // }, "\xA0From"), React.createElement("div", {
++  //   className: styles.ganttTable_HeaderSeparator,
++  //   style: {
++  //     height: headerHeight * 0.5,
++  //     marginTop: headerHeight * 0.25
++  //   }
++  // }), React.createElement("div", {
++  //   className: styles.ganttTable_HeaderItem,
++  //   style: {
++  //     minWidth: rowWidth
++  //   }
++  // }, "\xA0To")
++  ));
+ };
+ 
+ var styles$1 = {"taskListWrapper":"_3ZbQT","taskListTableRow":"_34SS0","taskListCell":"_3lLk3","taskListNameWrapper":"_nI1Xw","taskListExpander":"_2QjE6","taskListEmptyExpander":"_2TfEi"};
+@@ -326,7 +330,8 @@ var dateTimeOptions = {
+ };
+ var TaskListTableDefault = function TaskListTableDefault(_ref) {
+   var rowHeight = _ref.rowHeight,
+-      rowWidth = _ref.rowWidth,
++      // rowWidth = _ref.rowWidth,
++      rowWidth = 320,
+       tasks = _ref.tasks,
+       fontFamily = _ref.fontFamily,
+       fontSize = _ref.fontSize,
+@@ -362,27 +367,82 @@ var TaskListTableDefault = function TaskListTableDefault(_ref) {
+         minWidth: rowWidth,
+         maxWidth: rowWidth
+       },
+-      title: t.name
++      title: t.roomName
+     }, React.createElement("div", {
+-      className: styles$1.taskListNameWrapper
++      className: styles$1.taskListNameWrapper,
++      style: {
++        alignItems: "center",
++      }
+     }, React.createElement("div", {
++      style: {
++        width: 8,
++        height: rowHeight,
++        backgroundColor: t.styles.progressColor
++      },
++    }),React.createElement("div", {
+       className: expanderSymbol ? styles$1.taskListExpander : styles$1.taskListEmptyExpander,
+       onClick: function onClick() {
+         return onExpanderClick(t);
+       }
+-    }, expanderSymbol), React.createElement("div", null, t.name))), React.createElement("div", {
+-      className: styles$1.taskListCell,
+-      style: {
+-        minWidth: rowWidth,
+-        maxWidth: rowWidth
+-      }
+-    }, "\xA0", toLocaleDateString(t.start, dateTimeOptions)), React.createElement("div", {
+-      className: styles$1.taskListCell,
+-      style: {
+-        minWidth: rowWidth,
+-        maxWidth: rowWidth
+-      }
+-    }, "\xA0", toLocaleDateString(t.end, dateTimeOptions)));
++    }, expanderSymbol), 
++      React.createElement(
++        "div", 
++        { style: { flex: 1, paddingRight: "16px" } },
++        React.createElement(
++          "div",
++          { style: { display: "flex", alignItems: "center", justifyContent: "space-between" } },
++          React.createElement(
++            "div",
++            { style: { fontSize: 18, fontWeight: "bold", color: "#495057" } },
++            t.roomName
++          ),
++          React.createElement(
++            "div",
++            { style: { fontSize: 11, fontWeight: "500", color: t.styles.progressColor, borderRadius: "16px", padding: "4px 12px", border: `2px solid ${t.styles.progressColor}` } },
++            t.roomStatus
++          )
++        ), 
++        React.createElement(
++          "div",
++          { style: { fontSize: 11, fontWeight: "500", color: "#4A67DD", margin: "8px 0" } },
++          t.roomSize + " / " + t.roomType + " / " + "월" + t.contractAmount + "원"
++        ), 
++        React.createElement(
++          "div",
++          { style: { backgroundColor: "#F7F7F7", borderRadius: "4px", padding: "4px 8px", fontSize: 11, fontWeight: "500", display: "flex", flexDirection: "row", alignItems: "center", gap: "8px" } },
++          React.createElement(
++            "span",
++            { style: { color: "#E44343" } },
++            t.contractStatus
++          ),
++          React.createElement(
++            "span",
++            { style: { color: "#495057" } },
++            t.enterName
++          ),
++          React.createElement(
++            "span",
++            { style: { color: "#495057" } },
++            t.start.getFullYear() + "-" + (t.start.getMonth() + 1) + "-" + t.start.getDate() + " " + t.end.getFullYear() + "-" + (t.end.getMonth() + 1) + "-" + t.end.getDate()
++          ),
++        ),
++      )
++    )), 
++    // React.createElement("div", {
++    //   className: styles$1.taskListCell,
++    //   style: {
++    //     minWidth: rowWidth,
++    //     maxWidth: rowWidth
++    //   }
++    // }, "\xA0", toLocaleDateString(t.start, dateTimeOptions)), 
++    // React.createElement("div", {
++    //   className: styles$1.taskListCell,
++    //   style: {
++    //     minWidth: rowWidth,
++    //     maxWidth: rowWidth
++    //   }
++    // }, "\xA0", toLocaleDateString(t.end, dateTimeOptions))
++  );
+   }));
+ };
+ 
+@@ -483,15 +543,78 @@ var StandardTooltipContent = function StandardTooltipContent(_ref2) {
+   return React.createElement("div", {
+     className: styles$2.tooltipDefaultContainer,
+     style: style
+-  }, React.createElement("b", {
+-    style: {
+-      fontSize: fontSize + 6
+-    }
+-  }, task.name + ": " + task.start.getDate() + "-" + (task.start.getMonth() + 1) + "-" + task.start.getFullYear() + " - " + task.end.getDate() + "-" + (task.end.getMonth() + 1) + "-" + task.end.getFullYear()), task.end.getTime() - task.start.getTime() !== 0 && React.createElement("p", {
+-    className: styles$2.tooltipDefaultContainerParagraph
+-  }, "Duration: " + ~~((task.end.getTime() - task.start.getTime()) / (1000 * 60 * 60 * 24)) + " day(s)"), React.createElement("p", {
++  },// 항목들
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "방 이름: ",
++    task.roomInfo || "-"
++  ),
++  React.createElement("p", {
++    className: styles$2.tooltipDefaultContainerParagraph },
++    "계약일자: ",
++    task.start.getFullYear() + "-" + (task.start.getMonth() + 1) + "-" + task.start.getDate()), 
++    // task.start.getDate() + "-" + (task.start.getMonth() + 1) + "-" + task.start.getFullYear() + " - " + task.end.getDate() + "-" + (task.end.getMonth() + 1) + "-" + task.end.getFullYear()), 
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "입실자: ",
++    task.enterName || "-"
++  ),
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "입실료: ",
++    task.contractAmount || "-"
++  ),
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "결제금액: ",
++    task.payAmount || "-"
++  ),
++
++  // 구분선
++  React.createElement("hr", null),
++
++  // 하단 항목들
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "보증금: ",
++    task.depositAmount || "-"
++  ),
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "계약자: ",
++    task.contractName || "-"
++  ),
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "입금자: ",
++    task.depositName || "-"
++  ),
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "은행명: ",
++    task.bankName || "-"
++  ),
++  React.createElement(
++    "p",
++    { className: styles$2.tooltipDefaultContainerParagraph },
++    "계좌번호: ",
++    task.bankAccountNumber || "-"
++  ), 
++  task.end.getTime() - task.start.getTime() !== 0 && React.createElement("p", {
+     className: styles$2.tooltipDefaultContainerParagraph
+-  }, !!task.progress && "Progress: " + task.progress + " %"));
++  }, "Duration: " + ~~((task.end.getTime() - task.start.getTime()) / (1000 * 60 * 60 * 24)) + " day(s)"), 
++  // React.createElement("p", {
++  //   className: styles$2.tooltipDefaultContainerParagraph
++  // }, !!task.progress && "Progress: " + task.progress + " %")
++  );
+ };
+ 
+ var styles$3 = {"scroll":"_1eT-t"};
+@@ -1542,16 +1665,20 @@ var BarDisplay = function BarDisplay(_ref) {
+     ry: barCornerRadius,
+     rx: barCornerRadius,
+     fill: getBarColor(),
++    stroke: isSelected ? styles.barProgressSelectedBorderColor : "none", // 선택시 테두리
++    strokeWidth: isSelected ? 2 : 0,        // 테두리 두께
+     className: styles$6.barBackground
+-  }), React.createElement("rect", {
+-    x: progressX,
+-    width: progressWidth,
+-    y: y,
+-    height: height,
+-    ry: barCornerRadius,
+-    rx: barCornerRadius,
+-    fill: getProcessColor()
+-  }));
++  })
++  // React.createElement("rect", {
++  //   x: progressX,
++  //   width: progressWidth,
++  //   y: y,
++  //   height: height,
++  //   ry: barCornerRadius,
++  //   rx: barCornerRadius,
++  //   fill: getProcessColor()
++  // })
++  );
+ };
+ 
+ var BarDateHandle = function BarDateHandle(_ref) {
+@@ -1845,7 +1972,21 @@ var TaskItem = function TaskItem(props) {
+     y: task.y + taskHeight * 0.5,
+     className: isTextInside ? style.barLabel :  style.barLabelOutside,
+     ref: textRef
+-  }, task.name));
++  }, 
++  // 이름 부분
++  React.createElement(
++    "tspan",
++    { style: { fontSize: 13 } },
++    task.enterName
++  ),
++  " ",
++  // 날짜 부분
++  React.createElement(
++    "tspan",
++    { style: { fontSize: 11 } },
++    task.start.getFullYear() + "-" + (task.start.getMonth() + 1) + " ~ " + task.end.getFullYear() + "-" + (task.end.getMonth() + 1)
++    ),
++  ));
+ };
+ 
+ var TaskGanttContent = function TaskGanttContent(_ref) {
+@@ -2200,13 +2341,13 @@ var HorizontalScroll = function HorizontalScroll(_ref) {
+ var Gantt = function Gantt(_ref) {
+   var tasks = _ref.tasks,
+       _ref$headerHeight = _ref.headerHeight,
+-      headerHeight = _ref$headerHeight === void 0 ? 50 : _ref$headerHeight,
++      headerHeight = _ref$headerHeight === void 0 ? 116 : _ref$headerHeight,
+       _ref$columnWidth = _ref.columnWidth,
+       columnWidth = _ref$columnWidth === void 0 ? 60 : _ref$columnWidth,
+       _ref$listCellWidth = _ref.listCellWidth,
+-      listCellWidth = _ref$listCellWidth === void 0 ? "155px" : _ref$listCellWidth,
++      listCellWidth = _ref$listCellWidth === void 0 ? "320px" : _ref$listCellWidth,
+       _ref$rowHeight = _ref.rowHeight,
+-      rowHeight = _ref$rowHeight === void 0 ? 50 : _ref$rowHeight,
++      rowHeight = _ref$rowHeight === void 0 ? 116 : _ref$rowHeight,
+       _ref$ganttHeight = _ref.ganttHeight,
+       ganttHeight = _ref$ganttHeight === void 0 ? 0 : _ref$ganttHeight,
+       _ref$viewMode = _ref.viewMode,
+diff --git a/node_modules/gantt-task-react/dist/types/public-types.d.ts b/node_modules/gantt-task-react/dist/types/public-types.d.ts
+index f53c1a3..35fbdb5 100644
+--- a/node_modules/gantt-task-react/dist/types/public-types.d.ts
++++ b/node_modules/gantt-task-react/dist/types/public-types.d.ts
+@@ -25,12 +25,35 @@ export interface Task {
+         backgroundSelectedColor?: string;
+         progressColor?: string;
+         progressSelectedColor?: string;
++        barProgressSelectedBorderColor?: string;
+     };
+     isDisabled?: boolean;
+     project?: string;
+     dependencies?: string[];
+     hideChildren?: boolean;
+     displayOrder?: number;
++    /**
++     * 고시원 정보
++     */
++    gosiwon?: string; // 고시원 이름
++    roomName?: string; // 방 이름
++    roomInfo?: string; // 방 정보
++    depositAmount?: string; // 보증금 금액
++    contractAmount?: string; // 입실료 금액
++    roomSize?: "원룸" | "오피스텔"; // 방 크기
++    roomType?: "외창" | "내창"; // 방 타입
++    roomStatus?: "판매중" | "퇴실 확정" | "입금 대기중" | "결제 대기중" | "이용중" | "체납상태" | "퇴실 요청" | "판매 신청 전"; // 방 정보
++    contractStatus?: string; // 계약 상태
++    contractName?: string; // 계약자 이름
++    enterName?: string; // 입실자 이름
++    enterPhone?: string; // 입실자 전화번호
++    contractPhone?: string; // 계약자 전화번호
++    contractInfo?: string; // 계약 정보
++    depositName?: string; // 입금자 이름
++    contractStartDate?: string; // 계약 시작일
++    contractEndDate?: string; // 계약 종료일
++    bankName?: string; // 은행 이름
++    bankAccountNumber?: string; // 은행 계좌 번호
+ }
+ export interface EventOption {
+     /**
+@@ -95,6 +118,7 @@ export interface StylingOption {
+     barProgressSelectedColor?: string;
+     barBackgroundColor?: string;
+     barBackgroundSelectedColor?: string;
++    barProgressSelectedBorderColor?: string;
+     projectProgressColor?: string;
+     projectProgressSelectedColor?: string;
+     projectBackgroundColor?: string;
