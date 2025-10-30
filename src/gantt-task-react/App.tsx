@@ -224,7 +224,7 @@ function App() {
           <Gantt
             tasks={tasks}
             viewMode={view}
-            viewDate={new Date()}
+            // viewDate={new Date()}
             onDateChange={handleTaskChange}
             onDelete={handleTaskDelete}
             onProgressChange={handleProgressChange}
