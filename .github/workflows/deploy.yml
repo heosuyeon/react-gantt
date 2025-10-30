@@ -43,19 +43,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: react-gantt-build
-          if-no-files-found: error
-          path: |
-            dist/**
-            public/js/**
-            views/**
-            public/css/**
-            src/gantt-task-react/LICENSE
-            package.json
-            package-lock.json
-            vite.config.ts
-            tsconfig.json
-            tsconfig.node.json
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
