@@ -1,0 +1,174 @@
+.dashboard {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid white;
+}
+
+main.container {
+  padding: 2rem 0;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #667eea;
+}
+
+.card ul {
+  list-style-position: inside;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.ViewContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.ViewContainer button {
+  background: #667eea;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.arrows {
+  display: none;
+}
+/* tooltip 스타일 */
+._3T42e {
+  background: #ffffff99 !important;
+  backdrop-filter: blur(8px) !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+  box-shadow: none !important;
+}
+/* bar 스타일 */
+._31ERP {
+  stroke-width: 2 !important;
+}
+
+/* Popover for Gantt click */
+.gantt-popover {
+  background: #00000099;
+  backdrop-filter: blur(8px);
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  padding: 8px;
+
+  & ul {
+    margin: 0;
+    padding: 0;
+  }
+  & li {
+    padding: 4px 8px;
+    font-size: 13px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    &:hover {
+      background-color: #00000011;
+    }
+  }
+}
+
+#favDialog {
+  transition: transform 0.5s allow-discrete;
+  border: 0;
+  padding: 1rem;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#favDialog[open] {
+  /* animation: fadeLeftIn 0.5s ease normal; */
+}
+
+dialog::backdrop {
+  /* background-color: transparent; */
+  opacity: 0;
+  transition: all 0.5s allow-discrete;
+}
+dialog[open]::backdrop {
+  opacity: 1;
+}
