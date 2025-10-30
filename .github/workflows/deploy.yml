@@ -50,6 +50,11 @@ jobs:
           cp -R public/css/. dist/css/ || true
           cp -R public/js/. dist/js/ || true
 
+      - name: Include third-party licenses
+        run: |
+          mkdir -p dist/THIRD_PARTY_LICENSES
+          cp src/gantt-task-react/LICENSE dist/THIRD_PARTY_LICENSES/gantt-task-react.LICENSE || true
+
       - name: Assert dist/index.html exists
         run: test -f dist/index.html
 
