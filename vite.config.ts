@@ -9,6 +9,10 @@ export default defineConfig({
   },
   build: {
     outDir: "public/js",
+    // public 디렉터리를 outDir로 복사하지 않도록 설정 (중첩 생성 방지)
+    copyPublicDir: false,
+    // CSS 등 에셋은 outDir 내부의 assets/ 하위로 분리
+    assetsDir: "assets",
     lib: {
       entry: path.resolve(__dirname, "src/gantt-task-react/index.tsx"),
       name: "ReactApp",
