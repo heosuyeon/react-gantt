@@ -11,6 +11,7 @@
     "build": "npm run build:server && npm run build:client",
     "build:server": "tsc",
     "build:client": "vite build",
+    "postbuild": "node scripts/make-static.cjs",
     "start": "node dist/server.js",
     "postinstall": "patch-package"
   },
