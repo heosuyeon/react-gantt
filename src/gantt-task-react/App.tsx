@@ -189,7 +189,7 @@ function App() {
     <div className="dashboard">
       <main className="container">
         <h1>대시보드 (React SPA)</h1>
-        <p className="subtitle">이 페이지는 React로 렌더링된 SPA입니다.</p>
+        {/* <p className="subtitle">이 페이지는 React로 렌더링된 SPA입니다.</p> */}
 
         {/* <div className="dashboard-content">
           <div className="card">

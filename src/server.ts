@@ -20,14 +20,6 @@ app.get("/", (req, res) => {
   res.render("pages/index");
 });
 
-app.get("/about", (req, res) => {
-  res.render("pages/about");
-});
-
-app.get("/contact", (req, res) => {
-  res.render("pages/contact");
-});
-
 // Dashboard 페이지 (EJS 템플릿 사용 - 다른 페이지들과 통일성 유지)
 app.get("/dashboard", (req, res) => {
   res.render("pages/dashboard");
@@ -36,13 +28,8 @@ app.get("/dashboard/*", (req, res) => {
   res.render("pages/dashboard");
 });
 
-// API 엔드포인트
-app.get("/api/data", (req, res) => {
-  res.json({ message: "Hello from Node.js API!" });
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-  console.log(`EJS pages: /, /about, /contact`);
+  console.log(`EJS pages: /`);
   console.log(`React SPA: /dashboard`);
 });
