@@ -94,6 +94,10 @@ h1 {
 ._2dZTy:nth-child(2n) {
   fill: transparent !important;
 }
+/* header year text color */
+._2q1Kt {
+  fill: #000000 !important;
+}
 
 /* Popover for Gantt click */
 .gantt-popover {

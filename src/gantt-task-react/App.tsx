@@ -39,7 +39,7 @@ function App() {
   // } else if (view === ViewMode.Year) {
   //   timeStep = 31536000000;
   // }
-  const headerHeight = 50;
+  const headerHeight = 60;
   const arrowIndent = 20;
 
   const [popover, setPopover] = useState<{
@@ -48,7 +48,7 @@ function App() {
     task: Task;
   } | null>(null);
 
-  console.log("render");
+  // console.log("render");
 
   // 마우스 위치 추적
   useEffect(() => {
